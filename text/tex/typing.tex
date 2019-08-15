@@ -1,0 +1,73 @@
+\section{Type System}
+
+\begin{figure}[ht]
+  \centering
+
+  \begin{flalign*}
+    \Delta \concat \Delta' &= \Delta'' \\
+                           & \text{assumes } \forall x \in \Delta, \forall y \in \Delta'. \left(x\notin\Delta' \wedge \left(x \in \Delta''\wedge y \in \Delta''\right)\right)
+  \end{flalign*}
+\end{figure}
+
+
+\infrule[Atom]{}{
+  \Gamma \mid \Delta \vdash a : A
+}
+
+\infrule[\lambda]{
+  \left(x = \tau\right), \Gamma \mid \left[\right] \vdash e : \tau'
+}{
+  \Gamma \mid \Delta \vdash \fun x e : \tau \rightarrow \tau'
+}
+
+\infrule[$\affsym\lambda$]{
+  \Gamma \mid \left(x = \tau\right), \Delta \vdash e : \tau'
+}{
+  \Gamma \mid \Delta \vdash \funA x e : \tau \multimap \tau'
+}
+
+\infrule[App]{
+  \Gamma \mid \left[\right] \vdash e : \tau \rightarrow \tau'
+  \andalso
+  \Gamma \mid \left[\right] \vdash e' : \tau
+}{
+  \Gamma \mid \Delta \vdash e\ e' : \tau'
+}
+
+\infrule[$\affsym\textsc{App}$]{
+  \Gamma \mid \Delta \vdash e : \tau \multimap \tau'
+  \andalso
+  \Gamma \mid \Delta' \vdash e' : \tau
+}{
+  \Gamma \mid \Delta\concat\Delta' \vdash e@e' : \tau'
+}
+
+\infrule[Var]{
+  \left(x = \tau\right) \in \Gamma
+}{
+  \Gamma \mid \Delta \vdash x : \tau
+}
+
+\infrule[$\affsym\textsc{Var}$]{
+  \left(x = \tau\right) \in \Delta
+}{
+  \Gamma \mid \Delta \vdash x : \tau
+}
+
+\infrule[Let]{
+  \Gamma \mid \left[\right] \vdash e : \tau
+  \andalso
+  \left(x = \tau\right), \Gamma \mid \Delta \vdash e' : \tau'
+}{
+  \Gamma \mid \Delta \vdash \lett{x}{e}{e'} : \tau'
+}
+
+\infrule[$\affsym\textsc{Let}$]{
+  \Gamma \mid \Delta \vdash e : \tau
+  \andalso
+  \left(x = \tau\right), \Gamma \mid \Delta' \vdash e' : \tau'
+}{
+  \Gamma \mid \Delta\concat\Delta' \vdash \letA{x}{e}{e'} : \tau'
+}
+
+

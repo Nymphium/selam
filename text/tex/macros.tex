@@ -1,0 +1,56 @@
+\newcommand{\affsym}{%
+  \ifx%
+    \raisebox{2pt}{!`}
+  \else%
+    \raisebox{2pt}{\text{!`}}
+  \fi}
+
+\newcommand{\affE}{\affsym E}
+
+\newcommand{\fun}[2]{\lambda #1. #2}
+
+\newcommand{\funA}{%
+  \affsym\fun}
+
+\newcommand{\clos}[3]{
+  \mathtt{clos}\left(\fun{#1}{#2}, #3\right)}
+
+\newcommand{\closA}[4]{\affsym\mathtt{clos}\left(#1, #2, #3, #4\right)}
+
+\newcommand{\lett}[3]{%
+  \mathtt{let}\ #1 = #2\ \mathtt{in}\ #3}
+
+\newcommand{\lets}[3]{
+  \mathtt{let}_{#1}\left(#2, #3\right)
+}
+
+\newcommand{\letas}[4]{
+  \affsym\mathtt{let}_{#1}\left(#2, #3, #4\right)
+}
+
+\newcommand{\app}[3]{%
+  \mathtt{app}\left(#1, #2, #3\right)}
+
+\newcommand{\appA}[4]{\affsym\mathtt{app}\left(#1, #2, #3, #4\right)}
+
+\newcommand{\letA}{%
+  \affsym\lett}
+
+
+% -----------------------
+
+\newcommand{\lookup}[2]{
+  \mathit{lookup}\left(#1,#2\right)
+}
+
+\newcommand{\drop}[2]{
+  \mathit{drop}\left(#1,#2\right)
+}
+
+\newcommand{\splitt}[2]{
+  \mathit{split}\left(#1,#2\right)
+}
+
+\newcommand{\model}[4]{\left\langle #1;\, #2;\, #3;\, #4 \right\rangle}
+
+\newcommand{\concat}{\kern-.3em+\kern-.5em+}

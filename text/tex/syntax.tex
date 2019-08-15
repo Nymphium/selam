@@ -1,0 +1,24 @@
+\section{syntax}
+\begin{center}
+  \begin{minipage}{.6\textwidth}
+    \[\begin{array}{rrl}
+      x &\in& \mathit{Variables}\\
+      a &\in& \mathit{Atomics}\\
+      v &::=& a \mid \funA{x}{e} \mid \affsym x \mid \fun{x}{e} \mid x \\
+      e &::=& v \mid e@e \mid \letA{x}{e}{e}\\
+      &&\mid e\ e \mid \lett{x}{e}{e}\\
+      &&\\
+      w &::=& a \mid \closA{x}{e}{E}{\affE} \mid \clos{x}{e}{E}\\
+      F &::=& w\ \square \mid w@\square \mid \appA{\square}{e}{E}{\affE} \mid \app{\square}{e}{E}\\
+      &&\mid  \lets{x}{e}{E} \mid \letas{x}{e}{E}{\affE}\\
+      C &::=& e \mid w\\
+      E &::=& \left[\right] \mid \left(x = w\right), E\\
+      \affE &::=& \left[\right] \mid \left(x = w\right), \affE\\
+      K &::=& \left[\right] \mid F, K\\
+      &&\\
+      \tau &::=& A \mid \tau \rightarrow \tau \mid \tau \multimap \tau\\
+      \Gamma &::=& \left[\right] \mid \left(x = \tau\right), \Gamma\\
+      \Delta &::=& \left[\right] \mid \left(x = \tau\right), \Delta
+    \end{array}\]
+  \end{minipage}
+\end{center}

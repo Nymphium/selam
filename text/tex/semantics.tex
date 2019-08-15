@@ -1,0 +1,126 @@
+\section{semtntics}
+
+\begin{figure}[ht]
+    \begin{flalign*}
+        \lookup{x}{\left[\right]} &= \mathrm{undefined}\\
+        \lookup{x}{\left(\left(x = v\right) ,  \textunderscore\right)} &= v\\
+        \lookup{x}{\left(\left(y = \textunderscore\right) ,  \mathit{ls}\right)} &= \lookup{x}{\mathit{ls}}\\
+                                                           &\\
+        \drop{x}{\left[\right]} &= \left[\right]\\
+        \drop{x}{\left(\left(x = \textunderscore\right) ,  \mathit{ls}\right)} &= \mathit{ls}\\
+        \drop{x}{\left(\left(y = v\right) ,  \mathit{ls}\right)} &= \left(y = v\right) ,  \drop{x}{\mathit{ls}}\\
+    \end{flalign*}
+
+    \caption{utility functions}
+\end{figure}
+
+\begin{framed}
+  \infax{
+    \model{C}{E}{\affE}{K}
+    \mapsto
+    \model{C'}{E'}{\affE'}{K'}
+  }
+\end{framed}
+
+\infax[Lookup]{
+  \model{x}{E}{\affE}{K}
+  \mapsto
+  \model{\lookup{x}{E}}{E}{\affE}{K}
+}
+
+\infax[$\affsym\textsc{Lookup}$]{
+  \model{\affsym x}{E}{\affE}{K}
+  \mapsto
+  \model{\lookup{\affsym x}{\affE}}{E}{\drop{\affsym x}{\affE}}{K}
+}
+
+\infax[PushLet]{
+  \model{\lett{x}{e}{e'}}{E}{\affE}{K}
+  \mapsto
+  \model{e}{E}{\affE}{\left(\lets{x}{e'}{E},K\right)}
+}
+
+\infax[Push$\affsym\textsc{Let}$]{
+  \model{\letA{x}{e}{e'}}{E}{\affE}{K}
+  \mapsto
+  \model{e}{E}{\affE}{\left(\letas{x}{e'}{E}{\affE}, K\right)}
+}
+
+\infax[PopLet]{
+  \model{w}{E}{\affE}{\lets{x}{e'}{E'}, K}
+  \mapsto
+  \model{e'}{\left(\left(x=w\right),E'\right)}{\affE}{K}
+}
+
+\infax[Pop$\affsym\textsc{Let}$]{
+  \model{w}{E}{\affE}{\left(\letas{x}{e}{E'}{\affE'}, K\right)}
+  \mapsto
+  \model{e}{E'}{\left(\left(x=w\right),\affE'\right)}{K}
+}
+
+\infax[Close]{
+  \model{\fun x e}{E}{\affE}{K}
+  \mapsto
+  \model{\clos{x}{e}{E}}{E}{\affE}{K}
+}
+
+\infax[$\affsym\textsc{Close}$]{
+  \model{\funA x e}{E}{\affE}{K}
+  \mapsto
+  \model{\closA{x}{e}{E}}{E}{\affE}{K}
+}
+
+\infax[PushApp]{
+  \model{e\ e'}{E}{\affE}{K}
+  \mapsto
+  \model{e}{E}{\affE}{\left(\app{\square}{e'}{E}, K\right)}
+}
+
+\infax[$\textsc{Push}\affsym\textsc{App}$]{
+  \model{e@e'}{E}{\affE}{K}
+  \mapsto
+  \model{e}{E}{\affE}{\left(\appA{\square}{e'}{E}{\affE}, K\right)}
+}
+
+\infax[EvalArg]{
+  \model{w}{E}{\affE}{\app{\square}{e'}{E'}, K}
+  \mapsto
+  \model{e'}{E'}{\affE}{\left(w\ \square, K\right)}
+}
+
+\infax[Eval$\affsym\textsc{Arg}$]{
+  \model{w}{E}{\affE}{\left(\appA{\square}{e'}{E'}{\affE'}, K\right)}
+  \mapsto
+  \model{e'}{E'}{\affE'}{\left(w@\square, K\right)}
+}
+
+\infax[App]{
+  \model{w}{E}{\affE}{\left(\clos{x}{e}{E'}, K\right)}
+  \mapsto
+  \model{e}{\left(\left(x = w\right),E'\right)}{\affE}{K}
+}
+
+\infax[$\affsym\textsc{App}$]{
+  \model{w}{E}{\affE}{\left(\closA{x}{e}{E'}{\affE'}, K\right)}
+  \mapsto
+  \model{e}{E'}{\left(\left(x=w\right),\affE'\right)}{K}
+}
+
+\infax[ResltAtom]{
+  \model{a}{\left[\right]}{\left[\right]}{\left[\right]}
+  \mapsto
+  \text{Result: } a
+}
+
+\infax[Result\lambda]{
+  \model{\clos{x}{e}{E}}{\left[\right]}{\left[\right]}{\left[\right]}
+  \mapsto
+  \text{Result: } \fun x e
+}
+
+\infax[Result$\affsym\lambda$]{
+  \model{\closA{x}{e}{E}}{\left[\right]}{\left[\right]}{\left[\right]}
+  \mapsto
+  \text{Result: }\funA x e
+}
+
