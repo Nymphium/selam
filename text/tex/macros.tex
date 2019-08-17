@@ -20,17 +20,17 @@
 \newcommand{\lett}[3]{%
   \mathtt{let}\ #1 = #2\ \mathtt{in}\ #3}
 
-\newcommand{\lets}[3]{
-  \left(\lett{#1}{\square}{#2}, #3\right)
+\newcommand{\lets}[4]{
+  \left(\lett{#1}{\square}{#2}, #3, #4\right)
 }
 
 \newcommand{\letas}[4]{
-  \left(\letA{#1}{\square}{#2}, #3\right)}
+  \left(\letA{#1}{\square}{#2}, #3, #4\right)}
 
 \newcommand{\app}[3]{%
-  \left(#1\ #2, #3\right)}
+  \left(\square\ #1, #2, #3\right)}
 
-\newcommand{\appA}[4]{\left(#1@#2, #3, #4\right)}
+\newcommand{\appA}[3]{\left(\square@#1, #2, #3\right)}
 
 \newcommand{\letA}{%
   \affsym\lett}
