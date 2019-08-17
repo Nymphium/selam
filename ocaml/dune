@@ -1,0 +1,3 @@
+(env
+  (release
+  (flags (:standard -g -linkall -annot -bin-annot))))

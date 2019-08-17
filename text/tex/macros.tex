@@ -13,25 +13,24 @@
   \affsym\fun}
 
 \newcommand{\clos}[3]{
-  \mathtt{clos}\left(\fun{#1}{#2}, #3\right)}
+  \mathtt{clos}_#1\left(#2, #3\right)}
 
-\newcommand{\closA}[4]{\affsym\mathtt{clos}\left(#1, #2, #3, #4\right)}
+\newcommand{\closA}[4]{\affsym\mathtt{clos}_#1\left(#2, #3, #4\right)}
 
 \newcommand{\lett}[3]{%
   \mathtt{let}\ #1 = #2\ \mathtt{in}\ #3}
 
 \newcommand{\lets}[3]{
-  \mathtt{let}_{#1}\left(#2, #3\right)
+  \left(\lett{#1}{\square}{#2}, #3\right)
 }
 
 \newcommand{\letas}[4]{
-  \affsym\mathtt{let}_{#1}\left(#2, #3, #4\right)
-}
+  \left(\letA{#1}{\square}{#2}, #3\right)}
 
 \newcommand{\app}[3]{%
-  \mathtt{app}\left(#1, #2, #3\right)}
+  \left(#1\ #2, #3\right)}
 
-\newcommand{\appA}[4]{\affsym\mathtt{app}\left(#1, #2, #3, #4\right)}
+\newcommand{\appA}[4]{\left(#1@#2, #3, #4\right)}
 
 \newcommand{\letA}{%
   \affsym\lett}

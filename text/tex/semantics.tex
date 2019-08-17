@@ -67,7 +67,7 @@
 \infax[$\affsym\textsc{Close}$]{
   \model{\funA x e}{E}{\affE}{K}
   \mapsto
-  \model{\closA{x}{e}{E}}{E}{\affE}{K}
+  \model{\closA{x}{e}{E}{\affE}}{E}{\affE}{K}
 }
 
 \infax[PushApp]{
@@ -107,19 +107,19 @@
 }
 
 \infax[ResltAtom]{
-  \model{a}{\left[\right]}{\left[\right]}{\left[\right]}
+  \model{a}{\_}{\_}{\_}
   \mapsto
   \text{Result: } a
 }
 
 \infax[Result\lambda]{
-  \model{\clos{x}{e}{E}}{\left[\right]}{\left[\right]}{\left[\right]}
+  \model{\clos{x}{e}{E}}{\_}{\_}{\_}
   \mapsto
   \text{Result: } \fun x e
 }
 
 \infax[Result$\affsym\lambda$]{
-  \model{\closA{x}{e}{E}}{\left[\right]}{\left[\right]}{\left[\right]}
+  \model{\closA{x}{e}{E}}{\_}{\_}{\_}
   \mapsto
   \text{Result: }\funA x e
 }
